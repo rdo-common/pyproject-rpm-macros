@@ -2,7 +2,7 @@ Name:           pyproject-rpm-macros
 Summary:        RPM macros for PEP 517 Python packages
 License:        MIT
 
-%bcond_without tests
+%bcond_with tests
 
 # The idea is to follow the spirit of semver
 # Given version X.Y.Z:
@@ -11,7 +11,7 @@ License:        MIT
 #   Increment Z when this is a bugfix or a cosmetic change
 # Dropping support for EOL Fedoras is *not* considered a breaking change
 Version:        1.3.2
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 
 # Macro files
 Source001:      macros.pyproject
@@ -59,6 +59,7 @@ BuildRequires: (python3dist(toml) if python3-devel < 3.11)
 Requires:      python-rpm-macros
 Requires:      python-srpm-macros
 Requires:      python3-rpm-macros
+Requires:      python3-importlib-metadata
 
 # We use the following tools outside of coreutils
 Requires:      /usr/bin/find
@@ -124,6 +125,9 @@ export HOSTNAME="rpmbuild"  # to speedup tox in network-less mock, see rhbz#1856
 %license LICENSE
 
 %changelog
+* Thu Jun 30 2022 Alfredo Moralejo <amoralej@redhat.com> - 1.3.2-1.1
+- Adapted for CentOS 8 and python 3.6
+
 * Wed Jun 15 2022 Benjamin A. Beasley <code@musicinmybrain.net> - 1.3.2-1
 - Update %%pyproject_build_lib to support setuptools 62.1.0 and later
 - Fixes: rhbz#2097158

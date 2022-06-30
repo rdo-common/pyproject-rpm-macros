@@ -6,7 +6,10 @@ import os
 from collections import defaultdict
 from keyword import iskeyword
 from pathlib import PosixPath, PurePosixPath
-from importlib.metadata import Distribution
+try:
+    from importlib.metadata import Distribution
+except ModuleNotFoundError:
+    from importlib_metadata import Distribution
 
 
 # From RPM's build/files.c strtokWithQuotes delim argument

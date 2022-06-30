@@ -1,5 +1,11 @@
 from pathlib import Path
-import importlib.metadata
+
+try:
+    import importlib.metadata
+except ModuleNotFoundError:
+    import importlib
+    import importlib_metadata
+    importlib.metadata = importlib_metadata
 
 import pytest
 import yaml

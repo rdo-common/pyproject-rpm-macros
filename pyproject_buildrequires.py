@@ -2,7 +2,6 @@ import glob
 import io
 import os
 import sys
-import importlib.metadata
 import argparse
 import traceback
 import contextlib
@@ -14,6 +13,13 @@ import tempfile
 import email.parser
 import pathlib
 import zipfile
+
+try:
+    import importlib.metadata
+except ModuleNotFoundError:
+    import importlib
+    import importlib_metadata
+    importlib.metadata = importlib_metadata
 
 from pyproject_requirements_txt import convert_requirements_txt
 
